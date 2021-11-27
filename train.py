@@ -48,11 +48,11 @@ def main():
                 eval_bestRes['MAE'] = res_eval['MAE']
                 update = True
             reses = engine.eval(False, True)
-            print(makePrint('Test', i, reses))
             torch.save(engine.model.state_dict(),
                        args.save + args.data + "/" + "_epoch_" + str(i) + "_MAE_" + str(round(reses['MAE'], 2)) + "_MAPE_" + str(
                            round(reses['MAPE'], 2)) + ".pth")
             if update:
+                print(makePrint('Test', i, reses))
                 bestRes = reses
                 update = False
         print()
